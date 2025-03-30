@@ -27,12 +27,7 @@ SwitchBot API を使用して SwitchBot Color Bulb を一括操作する TypeScr
    npm install
    ```
 
-3. `.env.local` をプロジェクトルートに作成し、以下の環境変数を設定する
-
-   ```plaintext
-   TOKEN=<Your SwitchBot API Token>
-   SECRET=<Your SwitchBot API Secret>
-   ```
+3. `.env.local` を自身のトークンとシークレットで更新する
 
 > [!NOTE]
 > トークンおよびシークレットの取得方法は以下を参照してください: https://blog.switchbot.jp/announcement/api-v1-1/
