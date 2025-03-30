@@ -34,8 +34,8 @@ SwitchBot API を使用して SwitchBot Color Bulb を一括操作する TypeScr
    SECRET=<Your SwitchBot API Secret>
    ```
 
-   > [!NOTE]
-   > 取得方法は以下を参照してください: https://blog.switchbot.jp/announcement/api-v1-1/
+> [!NOTE]
+> トークンおよびシークレットの取得方法は以下を参照してください: https://blog.switchbot.jp/announcement/api-v1-1/
 
 ## 使用方法
 
