@@ -2,6 +2,7 @@ import { getDeviceIDs } from "./utils/getDeviceIDs";
 import { turnOnColorBulbs } from "./utils/turnOnColorBulbs";
 import { setColor } from "./utils/setColor";
 import { setBrightness } from "./utils/setBrightness";
+import { setColorTemperature } from "./utils/setColorTemprature";
 
 (async () => {
   const deviceIDs = await getDeviceIDs();
@@ -10,7 +11,53 @@ import { setBrightness } from "./utils/setBrightness";
     return;
   }
 
+  const color: string | undefined = process.argv[2];
+  const brightness: number | undefined = parseInt(process.argv[3], 10);
+  const colorTemperature: number | undefined = parseInt(process.argv[4], 10);
+
+  // Check if the color is valid
+  // Format: "{0-255}:{0-255}:{0-255}"
+  // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
+  if (color && !/^\d{1,3}:\d{1,3}:\d{1,3}$/.test(color)) {
+    console.error("Invalid color format. Use 'r:g:b' format.");
+    process.exit(1);
+  }
+
+  // Check if the brightness is valid
+  // Format: {1-100}
+  // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
+  if (brightness && (isNaN(brightness) || brightness < 1 || brightness > 100)) {
+    console.error("Invalid brightness value. Use a number between 1 and 100.");
+    process.exit(1);
+  }
+
+  // Check if the color temperature is valid
+  // Format: {2700-6500}
+  // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
+  if (
+    colorTemperature &&
+    (isNaN(colorTemperature) ||
+      colorTemperature < 2700 ||
+      colorTemperature > 6500)
+  ) {
+    console.error(
+      "Invalid color temperature value. Use a number between 2700 and 6500."
+    );
+    process.exit(1);
+  }
+
+  if (color) {
+    console.info(`Setting color to ${color}`);
+  }
+  if (brightness) {
+    console.info(`Setting brightness to ${brightness}`);
+  }
+  if (colorTemperature) {
+    console.info(`Setting color temperature to ${colorTemperature}`);
+  }
+
   await turnOnColorBulbs(deviceIDs);
-  await setColor(deviceIDs, "255:0:255");
-  await setBrightness(deviceIDs, 2);
+  await setColor(deviceIDs, color || "255:255:255");
+  await setBrightness(deviceIDs, brightness || 100);
+  await setColorTemperature(deviceIDs, colorTemperature || 5000);
 })();
