@@ -3,9 +3,15 @@ import { turnOnColorBulbs } from "./utils/turnOnColorBulbs";
 import { setColor } from "./utils/setColor";
 import { setBrightness } from "./utils/setBrightness";
 import { setColorTemperature } from "./utils/setColorTemprature";
+import {
+  isValidBrightness,
+  isValidColor,
+  isValidColorTemperature,
+} from "./utils/validators";
 
 (async () => {
   const deviceIDs = await getDeviceIDs();
+
   if (deviceIDs.length === 0) {
     console.error("No Color Bulb devices found.");
     return;
@@ -15,31 +21,17 @@ import { setColorTemperature } from "./utils/setColorTemprature";
   const brightness: number | undefined = parseInt(process.argv[3], 10);
   const colorTemperature: number | undefined = parseInt(process.argv[4], 10);
 
-  // Check if the color is valid
-  // Format: "{0-255}:{0-255}:{0-255}"
-  // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
-  if (color && !/^\d{1,3}:\d{1,3}:\d{1,3}$/.test(color)) {
+  if (color && !isValidColor(color)) {
     console.error("Invalid color format. Use 'r:g:b' format.");
     process.exit(1);
   }
 
-  // Check if the brightness is valid
-  // Format: {1-100}
-  // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
-  if (brightness && (isNaN(brightness) || brightness < 1 || brightness > 100)) {
+  if (brightness && !isValidBrightness(brightness)) {
     console.error("Invalid brightness value. Use a number between 1 and 100.");
     process.exit(1);
   }
 
-  // Check if the color temperature is valid
-  // Format: {2700-6500}
-  // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
-  if (
-    colorTemperature &&
-    (isNaN(colorTemperature) ||
-      colorTemperature < 2700 ||
-      colorTemperature > 6500)
-  ) {
+  if (colorTemperature && !isValidColorTemperature(colorTemperature)) {
     console.error(
       "Invalid color temperature value. Use a number between 2700 and 6500."
     );
