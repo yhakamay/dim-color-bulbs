@@ -1,5 +1,5 @@
 import { generateSign } from "./generateSign";
-import { sendCommand } from "./sendCommand";
+import { Command, sendCommand } from "./sendCommand";
 
 export async function setColor(
   deviceIDs: string[],
@@ -10,7 +10,7 @@ export async function setColor(
     command: "setColor",
     parameter: color,
     commandType: "command",
-  };
+  } satisfies Command;
 
   await Promise.all(
     deviceIDs.map((deviceId) =>
