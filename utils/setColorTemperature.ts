@@ -5,7 +5,7 @@ export async function setColorTemperature(
   deviceIDs: string[],
   colorTemperature: number | undefined
 ): Promise<void> {
-  if (colorTemperature) {
+  if (colorTemperature !== undefined) {
     const { token, sign, t, nonce } = generateSign();
     const command = {
       command: "setColorTemperature",
