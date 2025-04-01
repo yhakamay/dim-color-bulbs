@@ -37,20 +37,17 @@ SwitchBot API を使用して SwitchBot Color Bulb を一括操作する TypeScr
 1. プロジェクトを実行するには、以下のコマンドを使用します:
 
    ```bash
-   npx tsx --env-file=.env.local index.ts <color> <brightness> <colorTemperature>
+   npx tsx --env-file=.env.local index.ts <color> <brightness>
    ```
 
    - `<color>`: 設定する色 (例: `255:0:255`)。省略時はデフォルトで `255:255:255`。
    - `<brightness>`: 設定する明るさ (1 ~ 100)。省略時はデフォルトで `100`。
-   - `<colorTemperature>`: 設定する色温度 (2700 ~ 6500)。省略時はデフォルトで `5000`。
 
 2. アプリケーションは以下の操作を順に実行します:
 
-   - カラーバルブデバイスの取得
-   - カラーバルブをオンにする
-   - カラーバルブの色を設定する
-   - カラーバルブの明るさを設定する
-   - カラーバルブの色温度を設定する
+   1. カラーバルブデバイスの取得
+   2. カラーバルブの明るさを設定する
+   3. カラーバルブの色を設定する
 
 ## プロジェクト構成
 
