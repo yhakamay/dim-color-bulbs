@@ -1,6 +1,11 @@
 import { generateSign } from "./generateSign";
 import { Command, sendCommand } from "./sendCommand";
 
+/**
+ * @deprecated
+ * This function is deprecated and will be removed in the future because
+ * we learned that bulbs get turned on when receiving any other commands.
+ */
 export async function turnOnColorBulbs(deviceIDs: string[]): Promise<void> {
   const { token, sign, t, nonce } = generateSign();
   const command = {
