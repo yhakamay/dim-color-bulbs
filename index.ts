@@ -2,7 +2,7 @@ import { getDeviceIDs } from "./utils/getDeviceIDs";
 import { turnOnColorBulbs } from "./utils/turnOnColorBulbs";
 import { setColor } from "./utils/setColor";
 import { setBrightness } from "./utils/setBrightness";
-import { setColorTemperature } from "./utils/setColorTemprature";
+import { setColorTemperature } from "./utils/setColorTemperature";
 import {
   isValidBrightness,
   isValidColor,
