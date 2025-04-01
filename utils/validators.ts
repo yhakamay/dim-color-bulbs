@@ -15,6 +15,11 @@ export function isValidBrightness(brightness: number): boolean {
 // Check if the color temperature is valid
 // Format: {2700-6500}
 // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
+/**
+ * @deprecated
+ * This function is deprecated and will be removed in the future because
+ * the associated command is deprecated.
+ */
 export function isValidColorTemperature(colorTemperature: number): boolean {
   return (
     !isNaN(colorTemperature) &&
