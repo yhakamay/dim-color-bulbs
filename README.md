@@ -10,7 +10,7 @@ SwitchBot API を使用して SwitchBot Color Bulb を一括操作する TypeScr
 - SwitchBot API トークンとシークレット
 
 > [!IMPORTANT]
-> Node.js v.20.6.0 以上としているのは、環境変数を `--env-file` フラグで読み込むためです。dotenv 等でやりくりできる場合はこれ以下でも構いません
+> Node.js v.20.6.0 以上としているのは、環境変数を `--env-file` フラグで読み込むためです。dotenv 等でやりくりできる場合はこれ以下でも構いません。
 
 ## インストール
 
@@ -27,7 +27,12 @@ SwitchBot API を使用して SwitchBot Color Bulb を一括操作する TypeScr
    npm install
    ```
 
-3. `.env.local` を自身のトークンとシークレットで更新する
+3. `.env.local` を自身のトークンとシークレットで更新する:
+
+   ```txt
+   TOKEN="<your_token>"
+   SECRET="<your_secret>"
+   ```
 
 > [!NOTE]
 > トークンおよびシークレットの取得方法は以下を参照してください: https://blog.switchbot.jp/announcement/api-v1-1/
@@ -61,14 +66,17 @@ dim-color-bulbs/
 │ ├── sendCommand.ts # API コマンド送信
 │ ├── setBrightness.ts # 明るさの設定
 │ ├── setColor.ts # 色の設定
-│ ├── setColorTemprature.ts # 色温度の設定
-│ └── turnOnColorBulbs.ts # カラーバルブのオン
+│ ├── setColorTemperature.ts # 色温度の設定 (非推奨)
+│ └── turnOnColorBulbs.ts # カラーバルブのオン (非推奨)
 ```
 
 ## 注意事項
 
-- SwitchBot API の利用にはインターネット接続が必要です
-- 環境変数が正しく設定されていない場合、アプリケーションはエラーをスローします
+- SwitchBot API の利用にはインターネット接続が必要です。
+- 環境変数が正しく設定されていない場合、アプリケーションはエラーをスローします。
+- 以下の関数は非推奨です:
+  - `setColorTemperature`: 色温度は色を設定する際に自動的に設定されるため、使用する必要はありません。
+  - `turnOnColorBulbs`: 他のコマンドを送信すると自動的に電球がオンになるため、使用する必要はありません。
 
 ## 参照
 
