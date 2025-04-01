@@ -2,7 +2,7 @@
 // Format: "{0-255}:{0-255}:{0-255}"
 // https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/README.md#color-bulb-2
 export function isValidColor(color: string): boolean {
-  return !/^\d{1,3}:\d{1,3}:\d{1,3}$/.test(color);
+  return /^\d{1,3}:\d{1,3}:\d{1,3}$/.test(color);
 }
 
 // Check if the brightness is valid
