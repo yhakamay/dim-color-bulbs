@@ -1,8 +1,20 @@
 import https from "https";
 
+export type Command = {
+  command:
+    | "turnOn"
+    | "turnOff"
+    | "toggle"
+    | "setBrightness"
+    | "setColor"
+    | "setColorTemperature";
+  parameter: number | string;
+  commandType: "command";
+};
+
 export function sendCommand(
   deviceId: string,
-  command: { command: string; parameter: string; commandType: string },
+  command: Command,
   token: string,
   sign: string,
   t: number,

@@ -1,5 +1,5 @@
 import { generateSign } from "./generateSign";
-import { sendCommand } from "./sendCommand";
+import { Command, sendCommand } from "./sendCommand";
 
 export async function turnOnColorBulbs(deviceIDs: string[]): Promise<void> {
   const { token, sign, t, nonce } = generateSign();
@@ -7,7 +7,7 @@ export async function turnOnColorBulbs(deviceIDs: string[]): Promise<void> {
     command: "turnOn",
     parameter: "default",
     commandType: "command",
-  };
+  } satisfies Command;
 
   await Promise.all(
     deviceIDs.map((deviceId) =>
