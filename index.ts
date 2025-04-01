@@ -1,5 +1,4 @@
 import { getDeviceIDs } from "./utils/getDeviceIDs";
-import { turnOnColorBulbs } from "./utils/turnOnColorBulbs";
 import { setColor } from "./utils/setColor";
 import { setBrightness } from "./utils/setBrightness";
 import { setColorTemperature } from "./utils/setColorTemperature";
@@ -48,7 +47,6 @@ import {
     console.info(`Setting color temperature to ${colorTemperature}`);
   }
 
-  await turnOnColorBulbs(deviceIDs);
   await setColor(deviceIDs, color || "255:255:255");
   await setBrightness(deviceIDs, brightness || 100);
   await setColorTemperature(deviceIDs, colorTemperature || 5000);
